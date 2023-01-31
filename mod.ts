@@ -1,17 +1,17 @@
 import axiod from "https://deno.land/x/axiod/mod.ts";
 import { cheerio } from "https://deno.land/x/cheerio@1.0.7/mod.ts";
 
-let fanzaApiId : string;
-let fanzaAffiliateId : string;
+var fanzaApiId : string;
+var fanzaAffiliateId : string;
 
 export function FanzaAPI(_fanza){
-    fanzaApiId = _fanza.apiid;
-    fanzaAffiliateId = _fanza.affiliateid;
+    globalThis.fanzaApiId = _fanza.apiid;
+    globalThis.fanzaAffiliateId = _fanza.affiliateid;
 }
 
 //ItemList
 FanzaAPI.prototype.ItemList = function (_search) {
-    var _base = `https://api.dmm.com/affiliate/v3/ItemList?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}&site=${_search.site}`;
+    var _base = `https://api.dmm.com/affiliate/v3/ItemList?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}&site=${_search.site}`;
     if(_search.service !== undefined){
     _base += `&service=${_search.service}`;
     }
@@ -75,7 +75,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     
     //FloorList
     FanzaAPI.prototype.FloorList = function (_search,callback) {
-    var _base = `https://api.dmm.com/affiliate/v3/FloorList?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}`;
+    var _base = `https://api.dmm.com/affiliate/v3/FloorList?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}`;
     if(_search.output !== undefined){
     _base += `&output=${_search.output}`;
     }
@@ -103,7 +103,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     
     //ActressSearch
     FanzaAPI.prototype.ActressSearch = function (_search,callback) {
-    var _base = `https://api.dmm.com/affiliate/v3/ActressSearch?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}`;
+    var _base = `https://api.dmm.com/affiliate/v3/ActressSearch?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}`;
     if(_search.initial !== undefined){
     _base += `&initial=${_search.initial}`;
     }
@@ -179,7 +179,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     
     //GenreSearch
     FanzaAPI.prototype.GenreSearch = function (_search,callback) {
-    var _base = `https://api.dmm.com/affiliate/v3/GenreSearch?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}&floor_id=${search.floor_id}`;
+    var _base = `https://api.dmm.com/affiliate/v3/GenreSearch?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}&floor_id=${search.floor_id}`;
     if(_search.initial !== undefined){
     _base += `&initial=${_search.initial}`;
     }
@@ -216,7 +216,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     
     //MakerSearch
     FanzaAPI.prototype.MakerSearch = function (_search,callback) {
-    var _base = `https://api.dmm.com/affiliate/v3/MakerSearch?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}&floor_id=${search.floor_id}`;
+    var _base = `https://api.dmm.com/affiliate/v3/MakerSearch?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}&floor_id=${search.floor_id}`;
     if(_search.initial !== undefined){
     _base += `&initial=${_search.initial}`;
     }
@@ -253,7 +253,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     
     //SeriesSearch
     FanzaAPI.prototype.SeriesSearch = function (_search,callback) {
-    var _base = `https://api.dmm.com/affiliate/v3/SeriesSearch?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}&floor_id=${search.floor_id}`;
+    var _base = `https://api.dmm.com/affiliate/v3/SeriesSearch?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}&floor_id=${search.floor_id}`;
     if(_search.initial !== undefined){
     _base += `&initial=${_search.initial}`;
     }
@@ -290,7 +290,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     
     //AuthorSearch
     FanzaAPI.prototype.AuthorSearch = function (_search) {
-    var _base = `https://api.dmm.com/affiliate/v3/AuthorSearch?api_id=${this.fanzaApiId}&affiliate_id=${this.fanzaAffiliateId}&floor_id=${search.floor_id}`;
+    var _base = `https://api.dmm.com/affiliate/v3/AuthorSearch?api_id=${globalThis.fanzaApiId}&affiliate_id=${globalThis.fanzaAffiliateId}&floor_id=${search.floor_id}`;
     if(_search.initial !== undefined){
     _base += `&initial=${_search.initial}`;
     }
@@ -416,7 +416,7 @@ FanzaAPI.prototype.ItemList = function (_search) {
     }
     
     FanzaAPI.prototype.test = function(test){
-    this.getDescription(test).then((desc) => {
+    getDescription(test).then((desc) => {
         console.log(desc);
     })
     }
