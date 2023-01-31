@@ -1,6 +1,5 @@
 import axiod from "https://deno.land/x/axiod/mod.ts";
-import { cheerio } from "https://deno.land/x/cheerio@1.0.7/mod.ts";
-
+import { cheerio } from "https://deno.land/x/denocheerio/mod.ts";
 var fanzaApiId : string;
 var fanzaAffiliateId : string;
 
