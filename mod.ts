@@ -1,5 +1,6 @@
 import axiod from "https://deno.land/x/axiod/mod.ts";
 import { cheerio } from "https://deno.land/x/denocheerio/mod.ts";
+import { fetch } from "https://deno.land/x/file_fetch@0.2.0/mod.ts";
 var fanzaApiId : string;
 var fanzaAffiliateId : string;
 
@@ -327,8 +328,8 @@ return Promise.reject(error);
 //getMp4URL
 FanzaAPI.prototype.getMp4URL = async function (__cid : string) {
 var __mp4 : string = `https://cc3001.dmm.co.jp/litevideo/freepv/${__cid.substr( 0, 1 )}/${__cid.substr( 0, 3 )}/${__cid}/${__cid}_dmb_w.mp4`;
-return axiod.get(__mp4,{responseType: "blob"}).then((response2) => {
-return __mp4;
+return fetch(__mp4).then(() => {
+    return __mp4;
 })
 .catch(function (error) {
 return null;
