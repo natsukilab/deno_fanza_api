@@ -1,15 +1,15 @@
 # deno-fanzaapi
 
 FANZA Affiliate API for Deno
+https://affiliate.dmm.com/api/v3/itemlist.html
 
 ## How to use
 
 ```js
-// from denoland (unnecessary but do as you wish)
 import { FanzaAPI } from "https://deno.land/x/fanzaapi/mod.ts";
 var api = {
- apiid: '',
- affiliateid: ''
+    apiid: '',//api_id
+    affiliateid: ''//affiliate_id
 }
 var fanza = new FanzaAPI(api);
 
@@ -21,41 +21,29 @@ hits:40
 }
 
 //Request Send
-fanza.ItemList(requestOptions).then((data) => {
 //data contains response data
-data.result.items.forEach((item) =>{
-console.log(item.imageURL.large)
-})
-})
+var data: string[] = await fanza.ItemList(requestOptions);
 ```
 
 ```js
-fanza.FloorList(requestOptions).then((data) => {
-//data contains response data
-})
+var data: string[] = await fanza.FloorList(requestOptions);
 
-fanza.ActressSearch(requestOptions).then((data) => {
-//data contains response data
-})
+var data: string[] = await fanza.ActressSearch(requestOptions);
 
-fanza.GenreSearch(requestOptions).then((data) => {
-//data contains response data
-})
+var data: string[] = await fanza.GenreSearch(requestOptions);
 
-fanza.MakerSearch(requestOptions).then((data) => {
-//data contains response data
-})
+var data: string[] = await fanza.MakerSearch(requestOptions);
 
-fanza.SeriesSearch(requestOptions).then((data) => {
-//data contains response data
-})
+var data: string[] = await fanza.SeriesSearch(requestOptions);
 
-fanza.AuthorSearch(requestOptions).then((data) => {
-//data contains response data
-})
+var data: string[] = await fanza.AuthorSearch(requestOptions);
 
 //example get mp4 url
-fanza.getMp4URL(data.result.items[0].sampleMovieURL.size_720_480).then((data)=>{
-//data contains mp4URL
-})
+var requestOptions = {
+site:'FANZA',
+service:'digital',
+cid: 'sweet077'
+}
+var data: string[] = await fanza.ItemList(requestOptions);
+var mp4URL: string = await fanza.getMp4URL(data.result.items[0].product_id);
 ```
