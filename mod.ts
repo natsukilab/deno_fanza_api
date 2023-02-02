@@ -327,36 +327,11 @@ return Promise.reject(error);
 //getMp4URL
 FanzaAPI.prototype.getMp4URL = async function (__cid : string) {
 var __mp4 : string = `https://cc3001.dmm.co.jp/litevideo/freepv/${__cid.substr( 0, 1 )}/${__cid.substr( 0, 3 )}/${__cid}/${__cid}_dmb_w.mp4`;
-return axiod.get(__mp4).then((response2) => {
+return axiod.get(__mp4,{responseType: "blob"}).then((response2) => {
 return __mp4;
 })
 .catch(function (error) {
 return null;
-return Promise.reject(error);
-});
-}
-
-//getVRSample
-FanzaAPI.prototype.getVRSample = async function (__cid : string) {
-var __url : string = `https://www.dmm.co.jp/digital/-/vr-sample-player/=/cid=${__cid}/`;
-return axiod({
-url: __url,
-method: "get",
-headers:{
-Cookie: "age_check_done=1;"
-}
-})
-.then(function (response) {
-var __video = response.data.match(/\/\/cc3001.dmm.co.jp\/vrsample\/(.*?).mp4/);
-if(__video !== null){
-___video = __video[0];
-}else{
-___video = __video;
-}
-return ___video;
-})
-.catch(function (error) {
-console.log(error);
 return Promise.reject(error);
 });
 }
